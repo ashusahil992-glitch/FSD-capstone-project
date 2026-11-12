@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      database: campusbazaar_test
+      auto-index-creation: true
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 7.0.5
+
+app:
+  jwt:
+    secret: campusbazaar-test-signing-key-at-least-32-characters
+  admin:
+    email: admin@campusbazaar.demo
+    password: ChangeMe@123

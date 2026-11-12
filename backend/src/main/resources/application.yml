@@ -1,0 +1,35 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: campusbazaar
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 25MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-seconds: ${JWT_EXPIRATION_SECONDS:86400}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173,https://*.vercel.app}
+  seed:
+    enabled: ${SEED_ENABLED:true}
+  admin:
+    email: ${ADMIN_EMAIL:admin@campusbazaar.demo}
+    password: ${ADMIN_PASSWORD}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "!test"
+  data:
+    mongodb:
+      # Set MONGODB_URI in Render / terminal (or replace the default below with your MongoDB Atlas connection string):
+      # mongodb+srv://<username>:<password>@<cluster>.mongodb.net/campusbazaar?retryWrites=true&w=majority
+      uri: ${MONGODB_URI:${SPRING_DATA_MONGODB_URI:mongodb://127.0.0.1:27017/campusbazaar}}
+      database: ${MONGODB_DATABASE:campusbazaar}
+      auto-index-creation: true
